@@ -1,0 +1,31 @@
+CREATE DATABASE IF NOT EXISTS ristorantedb;
+USE ristorantedb;
+
+-- Tabella utenti
+CREATE TABLE utenti (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    soldi FLOAT NOT NULL,
+    ruolo ENUM('Normale', 'Chef', 'Critico', 'Chef_Capo', 'Critico_Forte') DEFAULT 'Normale'
+);
+
+-- Tabella piatti (collegata agli chef)
+CREATE TABLE piatti (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_piatto VARCHAR(100) UNIQUE NOT NULL,
+    prezzo FLOAT NOT NULL,
+    chef_id INT NOT NULL,
+    FOREIGN KEY (chef_id) REFERENCES utenti(id) ON DELETE CASCADE
+);
+
+-- Tabella valutazioni (collegata ai critici)
+CREATE TABLE valutazioni (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    critico_id INT NOT NULL,
+    piatto_id INT NOT NULL,
+    recensione TEXT NOT NULL,
+    FOREIGN KEY (critico_id) REFERENCES utenti(id) ON DELETE CASCADE,
+    FOREIGN KEY (piatto_id) REFERENCES piatti(id) ON DELETE CASCADE
+);
