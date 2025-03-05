@@ -253,18 +253,27 @@ class Menu {
             System.out.println("\n--- Benvenuto nel Ristorante! ---");
             System.out.println("1. Registrazione");
             System.out.println("2. Login");
+            System.out.println("3. Stampa recensioni");
+            System.out.println("5. Stampa menu");
             System.out.print("Scegli un'opzione: ");
             int scelta = Controlli.controlloInputInteri(scanner);
             scanner.nextLine();
+            Ristorante ristorante = new Ristorante();
 
             if (scelta == 1) {
                 utente = registraUtente();
             } else if (scelta == 2) {
                 utente = loginUtente();
+            } else if (scelta == 3) {
+                ristorante.stampaValutazioni();
+            } else if (scelta == 4) {
+                ristorante.stampaMenu();
+            } else {
+                System.out.println("Scelta non valida, riprova");
             }
-            utente.stampaDati(utente);
-            checkRoleMenu(utente);
         }
+        utente.stampaDati(utente);
+        checkRoleMenu(utente);
     }
 
     private Utente registraUtente() {
@@ -385,7 +394,10 @@ class Menu {
             } else if (scelta == 3) {
                 chef = null;
                 break;
+            } else {
+                System.out.println("Scelta non valida, riprova");
             }
+
         }
     }
 
@@ -419,6 +431,8 @@ class Menu {
             } else if (scelta == 4) {
                 critico = null;
                 break;
+            } else {
+                System.out.println("Scelta non valida, riprova");
             }
         }
     }
