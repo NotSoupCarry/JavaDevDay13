@@ -123,6 +123,18 @@ class Chef extends Ristorante {
 
     public void aggiungiPiatto(String piatto, float prezzo) {
         try {
+            // Controlla se il piatto esiste già nel database
+            PreparedStatement checkPs = conn
+                    .prepareStatement("SELECT COUNT(*) AS count FROM piatti WHERE nome_piatto = ?");
+            checkPs.setString(1, piatto);
+            ResultSet checkRs = checkPs.executeQuery();
+
+            if (checkRs.next() && checkRs.getInt("count") > 0) {
+                System.out.println("Il piatto " + piatto + " è già presente nel menu. Scegli un altro nome.");
+                return; // Se il piatto esiste già, interrompi l'aggiunta.
+            }
+
+            // Aggiungi il nuovo piatto
             PreparedStatement ps = conn
                     .prepareStatement("INSERT INTO piatti (nome_piatto, chef_id, prezzo) VALUES (?, ?, ?)");
             ps.setString(1, piatto);
@@ -254,7 +266,7 @@ class Menu {
             System.out.println("1. Registrazione");
             System.out.println("2. Login");
             System.out.println("3. Stampa recensioni");
-            System.out.println("5. Stampa menu");
+            System.out.println("4. Stampa menu");
             System.out.print("Scegli un'opzione: ");
             int scelta = Controlli.controlloInputInteri(scanner);
             scanner.nextLine();
