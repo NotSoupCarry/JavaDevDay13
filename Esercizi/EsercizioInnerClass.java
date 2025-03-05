@@ -7,7 +7,7 @@ class Adulto {
     }
 
     public void stampaAdulto(){
-        System.out.println("adulto: " + this.nome)
+        System.out.println("adulto: " + this.nome);
     }
 
     public class Figlio {
@@ -18,7 +18,7 @@ class Adulto {
         }
 
         public void stampaFiglio(){
-            System.out.println("figlio: " + this.nomeFiglio)
+            System.out.println("figlio: " + this.nomeFiglio);
         }
     }
 
