@@ -1,27 +1,42 @@
-
-class Veicolo {
-    //Creazione di una classe genitore. definire un metodo
-    void run() {
-        System.out.println("Il veicolo è in marcia");
-    }
-}
-
-class Bike extends Veicolo {
+public class ProvaOverride3 {
     public static void main(String args[]) {
-        Bike obj = new Bike();
-        obj.run(); // stampa riga 5
+        SBI s = new SBI();
+        ICICI i = new ICICI();
+        AXIS a = new AXIS();
+        System.out.println("SBI Rate of Interest: " + s.getRateOfInterest());
+        System.out.println("ICICI Rate of Interest: " + i.getRateOfInterest());
+        System.out.println("AXIS Rate of Interest: " + a.getRateOfInterest());
     }
 }
 
-class Bike2 extends Veicolo {
-    // @ override
+class Bank {
+    //@Override
     // non serve scrivere override perchè nello stesso file
-    void run() { 
-        System.out.println("La bici sta correndo in sicurezza");
-    } // metodo della classe genitore
+    int getRateOfInterest() {
+        return 0;
+    }
+}
 
-    public static void main(String args[]) {
-        Bike2 obj = new Bike2(); // crea oggetto
-        obj.run(); // stamap riga 20
+class SBI extends Bank {
+    //@Override
+    // non serve scrivere override perchè nello stesso file
+    int getRateOfInterest() {
+        return 8;
+    }
+}
+
+class ICICI extends Bank {
+    //@Override
+    // non serve scrivere override perchè nello stesso file
+    int getRateOfInterest() {
+        return 7;
+    }
+}
+
+class AXIS extends Bank {
+    //@Override
+    // non serve scrivere override perchè nello stesso file
+    int getRateOfInterest() {
+        return 9;
     }
 }

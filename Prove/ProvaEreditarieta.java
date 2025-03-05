@@ -1,6 +1,3 @@
-public class ProvaEreditarieta {
-  
-}
 
 class Vehicle { // super classe o classe genitore
 
